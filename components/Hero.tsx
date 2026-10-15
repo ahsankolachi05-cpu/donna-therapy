@@ -38,15 +38,32 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        {/* Right — full-height portrait */}
-        <div className="relative min-h-[420px] lg:min-h-[640px]">
+        {/* Right — full-height portrait with slow cinematic zoom */}
+        <div className="relative min-h-[420px] overflow-hidden lg:min-h-[640px]">
           <Image
-            src="/images/about-portrait.jpg"
+            src="/images/hero-portrait.jpg"
             alt="Donna Sheppard — counsellor and therapist (placeholder portrait)"
             fill
-            className="object-cover"
+            className="animate-slow-zoom object-cover"
             priority
           />
+          {/* Floating intro-call badge */}
+          <div className="animate-float-soft absolute bottom-8 left-8 right-8 sm:right-auto">
+            <div className="rounded-2xl bg-ivory/95 p-5 shadow-xl backdrop-blur sm:max-w-[280px]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum">
+                Free introductory call
+              </p>
+              <p className="font-serif mt-2 text-xl font-medium leading-snug">
+                20 minutes, no pressure — just a conversation.
+              </p>
+              <a
+                href="#contact"
+                className="mt-3 inline-block text-[12px] font-semibold uppercase tracking-[0.16em] text-plum underline decoration-plum/40 underline-offset-4"
+              >
+                Arrange yours →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
