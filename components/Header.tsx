@@ -1,135 +1,80 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#therapy", label: "Therapy" },
-  { href: "#faqs", label: "FAQs" },
-  { href: "#contact", label: "Contact" },
+  { label: "How I can help", href: "#help" },
+  { label: "My approach", href: "#approach" },
+  { label: "Fees", href: "#fees" },
+  { label: "FAQs", href: "#faqs" },
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open ]);
-
   return (
-    <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled || open
-            ? "bg-ivory/95 backdrop-blur-md shadow-[0_1px_0_rgba(48,52,47,0.08)]"
-            : "bg-transparent"
-        }`}
-      >
-        <nav
-          className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-5"
-          aria-label="Main navigation"
-        >
-          <Link
-            href="#home"
-            onClick={() => setOpen(false)}
-            className={`font-serif text-2xl md:text-[1.7rem] font-medium tracking-wide transition-colors duration-500 ${
-              scrolled || open ? "text-forest" : "text-ivory"
-            }`}
-          >
+    <header className="sticky top-0 z-50 border-b border-line bg-ivory/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
+        <a href="#top" className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-plum">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#faf7f1" strokeWidth="1.6">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5" strokeLinecap="round" />
+            </svg>
+          </span>
+          <span className="font-serif text-[1.35rem] font-medium leading-none">
             Donna Sheppard
-          </Link>
-
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`link-underline text-[13px] uppercase tracking-[0.18em] transition-colors duration-500 ${
-                  scrolled ? "text-charcoal/75 hover:text-forest" : "text-ivory/90 hover:text-ivory"
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
-            <Link
-              href="#contact"
-              className="bg-forest text-ivory px-6 py-3 text-[13px] uppercase tracking-[0.18em] transition-all duration-300 hover:bg-forest-deep hover:shadow-lg"
+          </span>
+        </a>
+        <nav className="hidden items-center gap-8 lg:flex">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-[13px] font-medium text-charcoal/70 transition hover:text-plum"
             >
-              Arrange a Consultation
-            </Link>
-          </div>
-
-          <button
-            className={`md:hidden flex h-11 w-11 flex-col items-center justify-center gap-[7px] transition-colors duration-500 ${
-              scrolled || open ? "text-forest" : "text-ivory"
-            }`}
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            <span
-              className={`block h-[2px] w-7 bg-current transition-transform duration-300 ${
-                open ? "rotate-45 translate-y-[9px]" : ""
-              }`}
-            />
-            <span className={`block h-[2px] w-7 bg-current transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
-            <span
-              className={`block h-[2px] w-7 bg-current transition-transform duration-300 ${
-                open ? "-rotate-45 -translate-y-[9px]" : ""
-              }`}
-            />
-          </button>
+              {l.label}
+            </a>
+          ))}
         </nav>
-      </header>
-
-      {/* Mobile menu */}
-      <div
-        className={`fixed inset-0 z-40 bg-forest-deep transition-all duration-500 md:hidden ${
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
-        <nav
-          className="flex h-full flex-col justify-center px-10 gap-2"
-          aria-label="Mobile navigation"
-        >
-          {links.map((l, i) => (
-            <Link
+        <div className="flex items-center gap-4">
+          <a
+            href="#contact"
+            className="hidden text-[12px] font-semibold uppercase tracking-[0.18em] text-plum underline decoration-plum/50 decoration-1 underline-offset-8 transition hover:decoration-plum sm:inline-block"
+          >
+            Arrange a call
+          </a>
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-charcoal lg:hidden"
+            aria-label="Menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {open && (
+        <nav className="border-t border-line bg-ivory px-6 py-4 lg:hidden">
+          {links.map((l) => (
+            <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              style={{ transitionDelay: open ? `${100 + i * 60}ms` : "0ms" }}
-              className={`font-serif text-4xl text-ivory py-3 transition-all duration-500 hover:text-sage-light ${
-                open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className="block py-3 text-[15px] font-medium text-charcoal/80"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
-          <Link
+          <a
             href="#contact"
             onClick={() => setOpen(false)}
-            style={{ transitionDelay: open ? "450ms" : "0ms" }}
-            className={`mt-8 inline-block bg-ivory text-forest px-8 py-4 text-sm uppercase tracking-[0.2em] text-center transition-all duration-500 ${
-              open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className="block py-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-plum"
           >
-            Arrange a Consultation
-          </Link>
+            Arrange a call
+          </a>
         </nav>
-      </div>
-    </>
+      )}
+    </header>
   );
 }

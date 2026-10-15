@@ -1,22 +1,15 @@
 import Hero from "@/components/Hero";
-import {
-  EmotionalConnection,
-  TherapyServices,
-  AboutTherapist,
-  Process,
-  SignatureSection,
-} from "@/components/Sections";
-import { FAQs, ContactSection } from "@/components/FAQsContact";
+import { HowICanHelp, MyApproach, AboutTherapist } from "@/components/Sections";
+import { Fees, FAQs, ContactSection } from "@/components/FAQsContact";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <EmotionalConnection />
-      <TherapyServices />
+      <HowICanHelp />
+      <MyApproach />
       <AboutTherapist />
-      <Process />
-      <SignatureSection />
+      <Fees />
       <FAQs />
       <ContactSection />
     </>

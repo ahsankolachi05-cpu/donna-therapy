@@ -1,55 +1,53 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
-    <footer className="bg-forest-deep text-ivory">
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-ivory/10">
+    <footer className="border-t border-line bg-ivory">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <p className="font-serif text-4xl font-medium sm:text-5xl">
+          Donna <em className="font-light">Sheppard</em>
+        </p>
+        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-charcoal/45">
+          Counselling &amp; Therapy · Portstewart
+        </p>
+        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-serif text-2xl font-medium">Donna Sheppard</p>
-            <p className="mt-2 text-sm font-light text-ivory/60">
-              Counselling & Therapy
-              <br />
-              Portstewart, Northern Ireland
-            </p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum">Explore</p>
+            <nav className="mt-4 space-y-2.5 text-[0.95rem] text-charcoal/70">
+              <a href="#help" className="block transition hover:text-plum">How I can help</a>
+              <a href="#approach" className="block transition hover:text-plum">My approach</a>
+              <a href="#about" className="block transition hover:text-plum">About me</a>
+              <a href="#fees" className="block transition hover:text-plum">Fees</a>
+              <a href="#faqs" className="block transition hover:text-plum">FAQs</a>
+            </nav>
           </div>
-          <nav className="flex flex-col gap-3" aria-label="Footer navigation">
-            {[
-              ["#home", "Home"],
-              ["#about", "About"],
-              ["#therapy", "Therapy"],
-              ["#faqs", "FAQs"],
-              ["#contact", "Contact"],
-            ].map(([href, label]) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-sm text-ivory/65 hover:text-ivory transition-colors w-fit"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-          <div className="text-sm font-light text-ivory/60 space-y-2">
-            <p>
-              <a href="mailto:hello@donnasheppard.co.uk" className="hover:text-ivory transition-colors">
-                hello@donnasheppard.co.uk
-              </a>{" "}
-              <span className="text-ivory/35">(placeholder)</span>
-            </p>
-            <p className="flex gap-5">
-              <Link href="#contact" className="hover:text-ivory transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#contact" className="hover:text-ivory transition-colors">
-                Accessibility
-              </Link>
-            </p>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum">Professional</p>
+            <div className="mt-4 space-y-2.5 text-[0.95rem] text-charcoal/70">
+              <p>Accreditation — to be confirmed</p>
+              <p>Supervision — to be confirmed</p>
+              <p>Insurance — to be confirmed</p>
+            </div>
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum">Location</p>
+            <div className="mt-4 space-y-2.5 text-[0.95rem] text-charcoal/70">
+              <p>Portstewart, Northern Ireland</p>
+              <p>In person · Online · By phone</p>
+            </div>
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum">Get in touch</p>
+            <div className="mt-4 space-y-2.5 text-[0.95rem] text-charcoal/70">
+              <p>Phone — to be confirmed</p>
+              <p>Email — to be confirmed</p>
+              <a href="#contact" className="block font-semibold text-plum underline decoration-plum/40 underline-offset-4">
+                Arrange a call
+              </a>
+            </div>
           </div>
         </div>
-        <div className="pt-8 flex flex-col sm:flex-row justify-between gap-3 text-xs text-ivory/40 font-light">
-          <p>© 2026 Donna Sheppard. All rights reserved. (Placeholder business name)</p>
-          <p className="font-serif italic text-sm">A quiet place to begin.</p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line pt-7 text-xs text-charcoal/45 sm:flex-row">
+          <p>© 2026 Donna Sheppard · Concept website by Draft by Ryan</p>
+          <p className="italic">Profile details &amp; credentials to be confirmed.</p>
         </div>
       </div>
     </footer>

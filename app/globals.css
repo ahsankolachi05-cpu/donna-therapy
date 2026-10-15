@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ivory: #f8f6f1;
-  --color-forest: #263e35;
-  --color-forest-deep: #1b2e27;
-  --color-sage: #a7b5a0;
-  --color-sage-light: #c9d4c2;
-  --color-sand: #e7dccb;
-  --color-sand-deep: #d8c9ae;
-  --color-charcoal: #30342f;
+  --color-ivory: #faf7f1;
+  --color-lilac: #eae4f2;
+  --color-lilac-deep: #d8cde9;
+  --color-taupe: #c9bda9;
+  --color-taupe-deep: #b3a68e;
+  --color-plum: #5f3d8f;
+  --color-plum-deep: #4a2f72;
+  --color-charcoal: #23201b;
+  --color-stone: #8a8072;
+  --color-line: #e2d9c6;
 
   --font-serif: "Cormorant Garamond", "Georgia", serif;
   --font-sans: "Inter", "Helvetica Neue", sans-serif;
@@ -27,11 +29,44 @@ body {
 }
 
 ::selection {
-  background: var(--color-forest);
+  background: var(--color-plum);
   color: var(--color-ivory);
 }
 
-/* Gentle entrance animations — CSS only, always run, never hide content */
+/* Small-caps eyebrow with number + rule, e.g. "01 —— HOW I CAN HELP" */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-plum);
+}
+.eyebrow::after {
+  content: "";
+  height: 1px;
+  width: 3rem;
+  background: var(--color-plum);
+  opacity: 0.5;
+}
+
+/* Layered card motif: solid taupe panel offset behind */
+.layered {
+  position: relative;
+}
+.layered::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(14px, 14px);
+  background: var(--color-taupe);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* Gentle load animations — CSS only, always run, never hide content */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -43,82 +78,35 @@ body {
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes drift {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
 .animate-fade-up {
   animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-.animate-fade-in {
-  animation: fade-in 1.2s ease both;
-}
-.animate-drift {
-  animation: drift 7s ease-in-out infinite;
-}
-
-.delay-100 {
-  animation-delay: 0.1s;
-}
-.delay-200 {
-  animation-delay: 0.2s;
-}
-.delay-300 {
-  animation-delay: 0.3s;
-}
-.delay-400 {
-  animation-delay: 0.4s;
-}
-
-/* Organic blob mask for hero image */
-.blob-mask {
-  border-radius: 58% 42% 55% 45% / 45% 55% 42% 58%;
-}
-
-/* Underline link animation */
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  height: 1px;
-  width: 100%;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.link-underline:hover::after,
-.link-underline:focus-visible::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--color-forest);
+  outline: 2px solid var(--color-plum);
   outline-offset: 3px;
+}
+
+/* FAQ accordion */
+details.faq > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details.faq > summary::-webkit-details-marker {
+  display: none;
+}
+details.faq > summary .faq-icon {
+  transition: transform 0.3s ease;
+}
+details.faq[open] > summary .faq-icon {
+  transform: rotate(45deg);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,248 +1,241 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-
-const faqs = [
+/* ---------- 03 · Fees (placeholders — clearly marked) ---------- */
+const fees = [
   {
-    q: "What happens during a first session?",
-    a: "Placeholder — Donna will describe what a first session typically involves, so visitors know what to expect.",
+    title: "Introductory call",
+    price: "Free",
+    detail: "20 minutes",
+    desc: "A relaxed, no-pressure chat to see if we're a good fit. No charge, no obligation.",
+    highlight: false,
   },
   {
-    q: "How do I know if counselling is right for me?",
-    a: "Placeholder — guidance on who counselling can help and how to decide whether to try it.",
+    title: "Individual session",
+    price: "To be confirmed",
+    detail: "50 minutes",
+    desc: "One-to-one counselling in person in Portstewart, online, or by phone.",
+    highlight: true,
   },
   {
-    q: "Are sessions available online or in person?",
-    a: "Placeholder — Donna will confirm whether she offers in-person sessions in Portstewart, online sessions, or both.",
-  },
-  {
-    q: "What are your fees?",
-    a: "Placeholder — fee information to be confirmed by Donna. Never invent pricing.",
-  },
-  {
-    q: "How do I arrange an appointment?",
-    a: "Placeholder — the booking process Donna prefers, whether by email, phone or an online system.",
+    title: "Concessions",
+    price: "To be confirmed",
+    detail: "Enquire",
+    desc: "A limited number of reduced-fee places may be available — please ask.",
+    highlight: false,
   },
 ];
 
-export function FAQs() {
-  const [open, setOpen] = useState<number | null>(0);
-
+export function Fees() {
   return (
-    <section id="faqs" className="bg-ivory py-24 md:py-36">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="text-center max-w-2xl mx-auto">
-          <p className="text-[11px] uppercase tracking-[0.35em] text-forest/60 mb-6">FAQs</p>
-          <h2 className="font-serif text-4xl md:text-6xl font-light text-charcoal">
-            Questions, <span className="italic text-forest">answered.</span>
-          </h2>
-        </div>
-
-        <div className="mt-14 divide-y divide-charcoal/10 border-y border-charcoal/10">
-          {faqs.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left group"
-                >
-                  <span className="font-serif text-xl md:text-2xl font-medium text-charcoal group-hover:text-forest transition-colors">
-                    {f.q}
-                  </span>
-                  <span
-                    className={`shrink-0 w-10 h-10 flex items-center justify-center border border-charcoal/20 transition-transform duration-300 ${
-                      isOpen ? "rotate-45 bg-forest text-ivory border-forest" : "text-forest"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 1v14M1 8h14" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                  </span>
-                </button>
-                <div
-                  className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="pb-7 font-light leading-relaxed text-charcoal/70 max-w-2xl">
-                      {f.a}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <p className="mt-8 text-center text-sm text-charcoal/45 font-light">
-          Answers are placeholders — Donna will provide her actual policies and information.
+    <section id="fees" className="bg-ivory py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <p className="eyebrow">
+          <span className="text-charcoal/40">03</span> Fees
         </p>
+        <div className="mt-6 max-w-2xl">
+          <h2 className="font-serif text-4xl font-medium leading-tight sm:text-5xl">
+            Simple, <em className="font-light">honest</em> pricing.
+          </h2>
+          <p className="mt-4 text-sm italic text-charcoal/50">
+            Fee details are placeholders — final pricing to be confirmed.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {fees.map((f) => (
+            <div
+              key={f.title}
+              className={`rounded-2xl border p-9 ${
+                f.highlight
+                  ? "border-plum/30 bg-lilac"
+                  : "border-charcoal/15 bg-ivory"
+              }`}
+            >
+              <h3 className="font-serif text-2xl font-medium">{f.title}</h3>
+              <p className="font-serif mt-4 text-4xl font-medium text-plum">{f.price}</p>
+              <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-charcoal/50">
+                {f.detail}
+              </p>
+              <p className="mt-4 text-[0.95rem] leading-relaxed text-charcoal/65">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 rounded-2xl border border-charcoal/15 bg-ivory p-7">
+          <p className="text-sm leading-relaxed text-charcoal/65">
+            <span className="font-semibold text-charcoal">Cancellations:</span>{" "}
+            life happens — please give as much notice as you can if you need to
+            rearrange. Full cancellation policy to be confirmed.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
+/* ---------- 04 · FAQs ---------- */
+const faqs = [
+  {
+    q: "How do I know if counselling is right for me?",
+    a: "If something is weighing on you — a specific problem, a difficult feeling, or simply a sense that things aren't as you'd like them to be — it's worth exploring. The free introductory call is a good, no-pressure way to find out.",
+  },
+  {
+    q: "What happens in a first session?",
+    a: "Mostly, we talk. I'll ask a little about what's bringing you here and what you'd like to be different. There's no test to pass and nothing you have to prepare — just come as you are.",
+  },
+  {
+    q: "Is everything I say confidential?",
+    a: "Yes — what you share stays between us, with a few standard safety exceptions (such as risk of serious harm) which I'll always explain clearly at the start.",
+  },
+  {
+    q: "Should I choose in-person, online, or phone sessions?",
+    a: "Whichever feels most comfortable. In-person sessions take place in Portstewart; online and phone sessions offer the same confidential space from wherever you are. Many people try one and switch — that's completely fine.",
+  },
+  {
+    q: "How often would we meet, and for how long?",
+    a: "Usually weekly to begin with, though we'll agree a rhythm that suits your life and your goals. Some people come for a handful of sessions; others stay longer. We'll review regularly together.",
+  },
+  {
+    q: "What are your qualifications?",
+    a: "Full details of training, accreditation and professional memberships are to be confirmed and will be listed here.",
+  },
+];
+
+export function FAQs() {
+  return (
+    <section id="faqs" className="border-t border-line bg-ivory py-20 sm:py-28">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <p className="eyebrow">
+          <span className="text-charcoal/40">04</span> FAQs
+        </p>
+        <h2 className="font-serif mt-6 text-4xl font-medium sm:text-5xl">
+          Questions, <em className="font-light">answered.</em>
+        </h2>
+        <div className="mt-10 border-t border-charcoal/15">
+          {faqs.map((f) => (
+            <details key={f.q} className="faq border-b border-charcoal/15">
+              <summary className="flex items-center justify-between gap-6 py-6">
+                <span className="font-serif text-[1.35rem] font-medium">{f.q}</span>
+                <span className="faq-icon font-serif shrink-0 text-3xl leading-none text-plum">+</span>
+              </summary>
+              <p className="max-w-2xl pb-7 leading-relaxed text-charcoal/65">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 05 · Contact ---------- */
 export function ContactSection() {
-  const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-
-  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
-
-  const submit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errs: Record<string, string> = {};
-    if (form.name.trim().length < 2) errs.name = "Please enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Please enter a valid email.";
-    if (form.message.trim().length < 5) errs.message = "Please include a brief message.";
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-    if (form.website) {
-      setStatus("sent");
-      return;
-    }
-    setStatus("sending");
-    const subject = encodeURIComponent(`Enquiry from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:hello@donnasheppard.co.uk?subject=${subject}&body=${body}`;
-    setStatus("sent");
+    const data = new FormData(e.currentTarget);
+    const subject = encodeURIComponent("Enquiry from website");
+    const body = encodeURIComponent(
+      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\n\nMessage:\n${data.get("message")}`
+    );
+    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
   };
 
-  const input =
-    "w-full bg-white/60 border border-charcoal/15 px-5 py-4 text-base font-light placeholder:text-charcoal/35 outline-none transition-all focus:border-forest focus:bg-white";
-
   return (
-    <section id="contact" className="bg-sand/40 py-24 md:py-36">
-      <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.35em] text-forest/60 mb-6">Contact</p>
-          <h2 className="font-serif text-4xl md:text-6xl font-light leading-[1.1] text-charcoal">
-            Whenever you&rsquo;re ready, <span className="italic text-forest">let&rsquo;s begin.</span>
-          </h2>
-          <p className="mt-7 font-light leading-relaxed text-charcoal/70 max-w-md">
-            Send a message using the form, or email directly. There is no pressure and no
-            obligation — just a first step.
-          </p>
-          <div className="mt-10 space-y-4">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.28em] text-charcoal/50">Email</p>
-              <a
-                href="mailto:hello@donnasheppard.co.uk"
-                className="font-serif italic text-2xl text-forest hover:text-forest-deep transition-colors"
-              >
-                hello@donnasheppard.co.uk
-              </a>
-              <p className="text-xs text-charcoal/40 mt-1">Placeholder — to be confirmed</p>
+    <section id="contact" className="bg-lilac py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="eyebrow">
+          <span className="text-charcoal/40">05</span> Contact
+        </p>
+        <div className="mt-6 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <div>
+            <h2 className="font-serif text-4xl font-medium leading-tight sm:text-5xl">
+              Arrange your <em className="font-light">introductory call.</em>
+            </h2>
+            <p className="mt-5 leading-relaxed text-charcoal/65">
+              A free 20-minute chat — a chance to ask anything, and to feel out
+              whether working together feels right. No pressure, no jargon.
+            </p>
+            <div className="mt-8 space-y-4 text-[0.95rem]">
+              <p className="flex gap-3">
+                <span className="font-semibold text-plum">Phone</span>
+                <span className="text-charcoal/60">To be confirmed</span>
+              </p>
+              <p className="flex gap-3">
+                <span className="font-semibold text-plum">Email</span>
+                <span className="text-charcoal/60">To be confirmed</span>
+              </p>
+              <p className="flex gap-3">
+                <span className="font-semibold text-plum">Hours</span>
+                <span className="text-charcoal/60">To be confirmed</span>
+              </p>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.28em] text-charcoal/50">Location</p>
-              <p className="font-light text-charcoal/75">Portstewart, Northern Ireland</p>
-              <p className="text-xs text-charcoal/40 mt-1">In person & online — TBC</p>
-            </div>
-          </div>
-          <div className="mt-10 bg-forest/5 border border-forest/15 p-6 max-w-md">
-            <p className="text-sm font-light leading-relaxed text-charcoal/65">
-              <span className="font-medium text-forest">A gentle note:</span> please don&rsquo;t
-              include highly sensitive or urgent personal details in this general enquiry form.
-              If you are in crisis, please contact your GP, Samaritans on 116 123, or emergency
-              services on 999.
+            <p className="mt-8 rounded-2xl border border-plum/25 bg-ivory p-5 text-sm leading-relaxed text-charcoal/65">
+              Prefer to write first? Use the form — it will open your email app
+              with everything filled in. Nothing is stored on this site.
             </p>
           </div>
-        </div>
 
-        <div className="bg-ivory p-8 md:p-10 shadow-xl">
-          {status === "sent" ? (
-            <div role="status" className="py-10 text-center">
-              <p className="font-serif text-3xl italic text-forest">Thank you.</p>
-              <p className="mt-4 font-light text-charcoal/70 leading-relaxed">
-                Your email app should now open with your message addressed and ready to send —
-                nothing was submitted automatically, as this form has no server backend yet.
-              </p>
-              <a
-                href="mailto:hello@donnasheppard.co.uk"
-                className="link-underline mt-6 inline-block text-forest text-[13px] uppercase tracking-[0.2em]"
-              >
-                Or email directly
-              </a>
-            </div>
-          ) : (
-            <form onSubmit={submit} noValidate>
-              <input
-                type="text"
-                value={form.website}
-                onChange={(e) => set("website", e.target.value)}
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-              <div className="space-y-6">
-                <div>
-                  <label htmlFor="c-name" className="text-[11px] uppercase tracking-[0.28em] text-charcoal/60">
-                    Name *
-                  </label>
+          <div className="layered z-0">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl bg-ivory p-8 sm:p-10"
+            >
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal/55">
+                    Your name
+                  </span>
                   <input
-                    id="c-name"
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => set("name", e.target.value)}
-                    placeholder="Your name"
-                    className={`${input} mt-2`}
-                    aria-invalid={!!errors.name}
+                    name="name"
+                    required
+                    className="w-full rounded-xl border border-charcoal/15 bg-white px-4 py-3 text-[0.95rem] placeholder:text-charcoal/30 focus:border-plum"
+                    placeholder="Jane Smith"
                   />
-                  {errors.name && <p className="mt-2 text-sm text-red-800">{errors.name}</p>}
-                </div>
-                <div>
-                  <label htmlFor="c-email" className="text-[11px] uppercase tracking-[0.28em] text-charcoal/60">
-                    Email *
-                  </label>
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal/55">
+                    Email
+                  </span>
                   <input
-                    id="c-email"
+                    name="email"
                     type="email"
-                    value={form.email}
-                    onChange={(e) => set("email", e.target.value)}
-                    placeholder="you@example.com"
-                    className={`${input} mt-2`}
-                    aria-invalid={!!errors.email}
+                    required
+                    className="w-full rounded-xl border border-charcoal/15 bg-white px-4 py-3 text-[0.95rem] placeholder:text-charcoal/30 focus:border-plum"
+                    placeholder="jane@example.com"
                   />
-                  {errors.email && <p className="mt-2 text-sm text-red-800">{errors.email}</p>}
-                </div>
-                <div>
-                  <label htmlFor="c-msg" className="text-[11px] uppercase tracking-[0.28em] text-charcoal/60">
-                    Message <span className="normal-case tracking-normal">(optional)</span>
-                  </label>
-                  <textarea
-                    id="c-msg"
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => set("message", e.target.value)}
-                    placeholder="Anything you'd like to share or ask…"
-                    className={`${input} mt-2 resize-none`}
-                    aria-invalid={!!errors.message}
-                  />
-                  {errors.message && <p className="mt-2 text-sm text-red-800">{errors.message}</p>}
-                </div>
+                </label>
               </div>
+              <label className="mt-5 block">
+                <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal/55">
+                  Phone <span className="normal-case tracking-normal text-charcoal/40">(optional)</span>
+                </span>
+                <input
+                  name="phone"
+                  type="tel"
+                  className="w-full rounded-xl border border-charcoal/15 bg-white px-4 py-3 text-[0.95rem] placeholder:text-charcoal/30 focus:border-plum"
+                  placeholder="07xxx xxx xxx"
+                />
+              </label>
+              <label className="mt-5 block">
+                <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal/55">
+                  Your message
+                </span>
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  className="w-full resize-none rounded-xl border border-charcoal/15 bg-white px-4 py-3 text-[0.95rem] placeholder:text-charcoal/30 focus:border-plum"
+                  placeholder="A little about what's on your mind…"
+                />
+              </label>
               <button
                 type="submit"
-                disabled={status === "sending"}
-                className="mt-8 w-full bg-forest text-ivory py-4 text-[13px] uppercase tracking-[0.22em] transition-all duration-300 hover:bg-forest-deep disabled:opacity-60"
+                className="mt-7 w-full rounded-full bg-plum px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-ivory transition hover:bg-plum-deep"
               >
-                {status === "sending" ? "Preparing…" : "Send Message"}
+                Send message
               </button>
-              <p className="mt-5 text-xs font-light text-charcoal/45 leading-relaxed">
-                This form opens your email app — no data is stored on a server. See our{" "}
-                <Link href="#contact" className="underline underline-offset-2">
-                  Privacy Policy
-                </Link>{" "}
-                (placeholder).
+              <p className="mt-4 text-center text-xs text-charcoal/45">
+                Opens your email app — nothing is sent automatically or stored.
               </p>
             </form>
-          )}
+          </div>
         </div>
       </div>
     </section>
